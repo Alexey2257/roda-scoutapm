@@ -1,8 +1,8 @@
-# Roda::Scoutapm
+# Roda plugin for ScoutApm instrumentation
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/roda/scoutapm`. To experiment with that code, run `bin/console` for an interactive prompt.
+This plugin adds [ScoutApm](https://scoutapm.com/) instrumentation to [Roda](https://github.com/jeremyevans/roda) applications.
 
-TODO: Delete this and the text above, and describe your gem
+It uses ScoutApm [Rack instrumentation ](https://scoutapm.com/docs/ruby/rack)
 
 ## Installation
 
@@ -16,7 +16,33 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+First, you need to add credentials to config/scout_apm.yml or ENV variables as ScoutApm requires.
+
+Than you need to add the ScoutApm::Rack.install! startup call as close to the spot you run your Rack application as possible. install! should be called after you require other gems (ActiveRecord, Mongo, etc) to install instrumentation for those libraries.
+
+```ruby
+#config.ru
+require_relative 'app'
+
+require 'scout_apm'
+ScoutApm::Rack.install!
+
+run App
+```
+
+```ruby
+class App < Roda
+  plugin :scoutapm
+
+  route do |r|
+    r.is 'foo' do
+      r.get do
+        'hello world'
+      end
+    end
+  end
+end
+```
 
 ## Development
 
@@ -26,7 +52,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/roda-scoutapm.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Alexey2257/roda-scoutapm.
 
 ## License
 
