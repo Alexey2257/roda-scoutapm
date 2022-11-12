@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative '../../blank'
+
+require_relative "../../blank"
 
 class Roda
   module RodaPlugins
@@ -15,7 +16,11 @@ class Roda
         private
 
         def always
-          ScoutApm::Rack.transaction(inspect.gsub(/[#<>]/, ''), env) do
+          if defined? ::ScoutApm
+            ::ScoutApm::Rack.transaction(inspect.gsub(/[#<>]/, ""), env) do
+              super
+            end
+          else
             super
           end
         end

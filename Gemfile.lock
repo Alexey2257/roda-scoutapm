@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    roda-scoutapm (0.1.0)
+    roda-scoutapm (0.1.2)
       roda
       scout_apm
 

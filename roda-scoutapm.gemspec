@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.description = "ScoutApm instrumentation for Roda apps/routes"
   spec.homepage = "https://github.com/Alexey2257/roda-scoutapm"
   spec.license = "MIT"
+  spec.required_ruby_version = ">= 2.6"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/Alexey2257/roda-scoutapm"
