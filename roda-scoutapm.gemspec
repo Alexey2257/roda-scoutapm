@@ -33,4 +33,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "roda"
   spec.add_dependency "scout_apm"
+
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

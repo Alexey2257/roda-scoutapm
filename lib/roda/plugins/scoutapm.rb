@@ -1,17 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "../../blank"
+require_relative "../../blank" unless String.new.respond_to?(:blank?)
 
 class Roda
+  # Integrate in Roda
   module RodaPlugins
     module Scoutapm
-      # module ClassMethods
-      #   def call(env)
-      #     ScoutApm::Rack.transaction(env['REQUEST_PATH'], env) do
-      #       app.call(env)
-      #     end
-      #   end
-      # end
+      # Inspect transaction on every request
       module RequestMethods
         private
 
